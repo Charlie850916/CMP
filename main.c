@@ -2,7 +2,37 @@
 
 int main(int argc, char* argv[])
 {
-    unsigned int IS, opcode, addr;
+    if(argc < 2) I_mem_size = 64;
+    else I_mem_size = atoi(argv[1]);
+
+    if(argc < 3) D_mem_size = 32;
+    else D_mem_size = atoi(argv[2]);
+
+    if(argc < 4) I_page_size = 8;
+    else I_page_size = atoi(argv[3]);
+
+    if(argc < 5) D_page_size = 16;
+    else D_page_size = atoi(argv[4]);
+
+    if(argc < 6) I_cache_size = 16;
+    else I_cache_size = atoi(argv[5]);
+
+    if(argc < 7) I_cache_block = 4;
+    else I_cache_block = atoi(argv[6]);
+
+    if(argc < 8) I_cache_associativity = 4;
+    else I_cache_associativity = atoi(argv[7]);
+
+    if(argc < 9) D_cache_size = 16;
+    else D_cache_size = atoi(argv[8]);
+
+    if(argc < 10) D_cache_block = 4;
+    else D_cache_block = atoi(argv[9]);
+
+    if(argc < 11) D_cache_associativity = 1;
+    else D_cache_associativity = atoi(argv[10]);
+
+    unsigned int IS, opcode, addr, PA;
 
     Initial();
 
@@ -11,6 +41,8 @@ int main(int argc, char* argv[])
     while(!halt)
     {
         IS = i_mem[PC/4];
+        PA = I_VA2PA(PC);
+        I_PAinCache(PA);
         opcode = GetOpcode(IS);
         switch(opcode)
         {

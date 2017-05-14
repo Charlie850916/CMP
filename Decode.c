@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "function.h"
 
 unsigned int GetLineN(int n, FILE *fp)
