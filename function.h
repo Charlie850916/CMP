@@ -17,7 +17,7 @@ unsigned int ICache_hit, ICache_miss, DCache_hit, DCache_miss, ITLB_hit, ITLB_mi
 
 int *ICache, *DCache, *ITLB, *DTLB, *IPTE, *DPTE;
 
-FILE *fp_r, *fp_t;
+FILE *fp_r;
 
 int cycle, halt;
 

@@ -12,8 +12,7 @@ void Initial()
     fp_i = fopen("iimage.bin", "rb");
     fp_d = fopen("dimage.bin", "rb");
     fp_r = fopen("snapshot.rpt", "wb");
-    fp_t = fopen("trace.rpt", "wb");
-
+ 
     HI = 0x0000000;
     LO = 0x0000000;
     HI_p = 0x00000000;
@@ -63,7 +62,7 @@ void Initial()
 
     ITLB = malloc(ITLB_entry * 4 * sizeof(int)); // entry * {valid,LRU,VA,PA}
     IPTE = malloc(IPTE_entry * 3 * sizeof(int)); // entry * {valid,LRU,PA}
-    ICache = malloc(I_cache_index * I_cache_associativity * 3 * sizeof(int)); // index * * set * {valid, MRU, tag}
+    ICache = malloc(I_cache_index * I_cache_associativity * 3 * sizeof(int)); // index * set * {valid, MRU, tag}
 
     DTLB = malloc(DTLB_entry * 4 * sizeof(int));
     DPTE = malloc(DPTE_entry * 3 * sizeof(int));
@@ -124,10 +123,7 @@ void InitialImf()
 {
     int i;
     fprintf(fp_r,"cycle 0\n");
-    for(i=0 ; i<32 ; i++)
-    {
-        fprintf(fp_r,"$%02d: 0x%08X\n", i, s[i]);
-    }
+    for(i=0 ; i<32 ; i++) fprintf(fp_r,"$%02d: 0x%08X\n", i, s[i]);
     fprintf(fp_r,"$HI: 0x%08X\n", HI);
     fprintf(fp_r,"$LO: 0x%08X\n", LO);
     fprintf(fp_r,"PC: 0x%08X\n", PC);
